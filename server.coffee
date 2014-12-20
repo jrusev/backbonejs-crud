@@ -28,21 +28,21 @@ User = nohm.model("User",
 
 listUsers = (req, res, next) ->
   User.find (err, ids) ->
-    return next(err)  if err
+    return next(err) if err
     users = []
     len = ids.length
     count = 0
-    return res.send([])  if ids.length is 0
+    return res.send([]) if ids.length is 0
     ids.forEach (id) ->
       user = new User()
       user.load id, (err, props) ->
-        return next(err)  if err
+        return next(err) if err
         users.push
           id: @id
           firstname: props.firstname
           lastname: props.lastname
           age: props.age
-        res.send users  if ++count is len
+        res.send users if ++count is len
 
 userDetails = (req, res) ->
   User.load req.params.id, (err, properties) ->
@@ -55,23 +55,26 @@ deleteUser = (req, res, next) ->
   user = new User()
   user.id = req.params.id
   user.remove (err) ->
-    return next(err)  if err
+    return next(err) if err
     res.send 204
 
-createUser = (req, res, next) ->
-  console.log 'req.body: ' + JSON.stringify req.body
+createUser = (req, res, next) ->  
   user = nohm.factory 'User'
   user.p req.body
   user.save (err) ->
-    return next(err)  if err
+    return next(err) if err
     res.send user.allProperties(true)
 
 updateUser = (req, res, next) ->
-  user = nohm.factory 'User'
+  user = nohm.factory 'User'  
+  data =
+    firstname: req.param("firstname")
+    lastname: req.param("lastname")
+    age: req.param("age")  
+  user.p data
   user.id = req.params.id
-  user.p req.body
-  user.save (err) ->
-    return next(err)  if err
+  user.save (err) ->    
+    return next(err) if err
     res.send user.allProperties(true)
 
 app.all "*", (req, res, next) ->
