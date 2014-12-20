@@ -2,7 +2,7 @@ express = require("express")
 app = express()
 nohm = require("nohm").Nohm
 
-app.use express.bodyParser()
+# app.use express.bodyParser()
 app.use express.static("" + __dirname + "/public")
 
 if process.env.REDISTOGO_URL
@@ -18,10 +18,8 @@ User = nohm.model("User",
   properties:
     firstname:
       type: "string"
-
     lastname:
       type: "string"
-
     age:
       type: "integer"
 )
@@ -82,7 +80,7 @@ app.all "*", (req, res, next) ->
 
 app.get "/users", listUsers
 app.get "/users/:id", userDetails
-app.del "/users/:id", deleteUser
+app.delete "/users/:id", deleteUser
 app.post "/users", createUser
 app.put "/users/:id", updateUser
 port = process.env.PORT or 3000
