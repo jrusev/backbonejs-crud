@@ -1,8 +1,10 @@
 express = require("express")
+bodyParser = require("body-parser")
 app = express()
 nohm = require("nohm").Nohm
 
-# app.use express.bodyParser()
+app.use bodyParser.json()
+app.use bodyParser.urlencoded(extended: true)
 app.use express.static("" + __dirname + "/public")
 
 if process.env.REDISTOGO_URL
@@ -57,14 +59,15 @@ deleteUser = (req, res, next) ->
     res.send 204
 
 createUser = (req, res, next) ->
-  user = new User()
+  console.log 'req.body: ' + JSON.stringify req.body
+  user = nohm.factory 'User'
   user.p req.body
   user.save (err) ->
     return next(err)  if err
     res.send user.allProperties(true)
 
 updateUser = (req, res, next) ->
-  user = new User()
+  user = nohm.factory 'User'
   user.id = req.params.id
   user.p req.body
   user.save (err) ->

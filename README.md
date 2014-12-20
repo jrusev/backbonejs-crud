@@ -1,6 +1,6 @@
 # CRUD Operations with Backbone.js
 
-A simple web application which supports CRUD operations on a User model using Backbone.js. The code is not written with modules to make it easy to follow. The server is running on Node.js with Redis and exposes the RESTful API. The application is based on the video tutorial from [Backbone Tutorials](http://backbonetutorials.com/) by Thomas Davis.
+A simple web application which supports CRUD operations built with Backbone.js. The code is not written with modules to make it easy to follow. The server is running on Node.js with Redis and exposes the RESTful API. The application is based on the video tutorial from [Backbone Tutorials](http://backbonetutorials.com/) by Thomas Davis.
 
 ## RESTful Documentation
 

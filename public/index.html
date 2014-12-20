@@ -78,7 +78,8 @@
     };
 
     $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-      var baseUrl = 'http://backbonejs-beginner.herokuapp.com';
+      // You can add the url of some REST server other than the localhost
+      var baseUrl = 'http://example.com';
       //options.url = baseUrl + options.url;
     });
 
