@@ -27,7 +27,7 @@ Ajax prefilters are useful for hooking into all AJAX request. In this case, we w
 
 ```js
 $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-  options.url = 'http://backbonejs-beginner.herokuapp.com' + options.url;
+  options.url = 'http://example.com' + options.url;
 });
 ```
 
