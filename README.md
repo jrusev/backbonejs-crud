@@ -23,7 +23,7 @@ Used for populating our user model
 ## Cleint Code Snippets
 
 ### Ajax Prefilter
-Ajax prefilters are useful for hooking into all AJAX request. In this case, we want to send all our AJAX request off to a remote server instead of the same domain. So we use a prefilter to hook in before the request is sent and prepend our custom origin server.
+Ajax prefilters are useful for hooking into all AJAX request. In this case, if we want to send all our AJAX request off to a remote server instead of the same domain. We can use a prefilter to hook in before the request is sent and prepend our custom origin server.
 
 ```js
 $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
@@ -33,7 +33,8 @@ $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
 
 ### jQuery SerializeObject
 http://stackoverflow.com/a/1186309
-By default jQuery doesn't allow us to convert our forms into Javascript Objects, someone wrote this snippet on Stack Overflow that I have been using for years.   Simply call it via `$(form).serializeObject()` and get a object returned.
+
+By default jQuery doesn't allow us to convert our forms into Javascript Objects. We can use this little snippet from StackOverflow - simply call it via `$(form).serializeObject()` and get a object returned.
 
 ```js
 $.fn.serializeObject = function() {
@@ -56,7 +57,7 @@ $.fn.serializeObject = function() {
 ### Preventing XSS
 http://stackoverflow.com/a/1219983
 
-As always you need to protect your users by encoding input and output, here is some simple methods for doing so.
+As always you need to protect your users by encoding(escaping special characters) input and output, here is some simple methods for doing so.
 
 ```js
 function htmlEncode(value){
