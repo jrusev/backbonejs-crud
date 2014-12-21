@@ -58,9 +58,12 @@
   </script>
 
   <script>
+    // A hack to escape the special characters (&,<,>,",`,') for insertion into HTML
     function htmlEncode(value){
       return $('<div/>').text(value).html();
     }
+    
+    // Convert a form into javascript object
     $.fn.serializeObject = function() {
       var o = {};
       var a = this.serializeArray();
@@ -78,7 +81,7 @@
     };
 
     $.ajaxPrefilter( function( options, originalOptions, jqXHR ) {
-      // You can add the url of some REST server other than the localhost
+      // Insert the url of your REST server if it is on different domain (cross-origin)
       var baseUrl = 'http://example.com';
       //options.url = baseUrl + options.url;
     });
